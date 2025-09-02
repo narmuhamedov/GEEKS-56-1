@@ -1,5 +1,35 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+
+from blog.models import Blog
+
+def blog_detail(request, id):
+  if request.method == 'GET':
+    blog_id = get_object_or_404(Blog, id=id)
+    context = {
+      'blog_id': blog_id
+    }
+    return render(request, template_name='blog_detail.html', context=context)
+  
+
+
+def blog_list(request):
+  if request.method == 'GET':
+    blog_list = Blog.objects.all().order_by('-id')
+    context = {
+      'blog_lst': blog_list,
+    }
+    return render(request, template_name='blog.html', context=context)
+
+
+
+
+
+
+
+
+
+
 
 
 def first_page(request):
