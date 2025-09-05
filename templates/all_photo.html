@@ -1,0 +1,10 @@
+<h1>Фото</h1>
+<ol>
+   <a href="{% url 'picknik' %}">Пикник</a>
+  {% for i in all_photo %}
+  <li>
+    <img src="{{ i.url_photo }}" alt="" width="400" height="350">
+    <p>{{ i.created_at }}</p>
+  </li>
+  {% endfor %}
+</ol>

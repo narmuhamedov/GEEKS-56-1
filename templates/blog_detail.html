@@ -5,3 +5,15 @@
     <p>{{ blog_id.category_blog }}</p>
     <iframe src="{{ blog_id.video_url }}" frameborder="0"></iframe>
     <p>{{ blog_id.created_at }}</p>
+
+    <h2>Комменты</h2>
+    <ol>
+  {% for i in blog_id.post.all %}
+
+  <li>
+    <h3>{{ i.stars }}</h3>
+    <p>{{ i.text }}</p>
+  </li>
+
+  {% endfor %}
+</ol>

@@ -20,3 +20,31 @@ class Blog(models.Model):
   class Meta:
     verbose_name = 'новость'
     verbose_name_plural = 'новости'
+
+
+class Reviews(models.Model):
+  STARS = (
+    ('⭐', '⭐'),
+    ('⭐⭐', '⭐⭐'),
+    ('⭐⭐⭐', '⭐⭐⭐'),
+    ('⭐⭐⭐⭐', '⭐⭐⭐⭐'),
+    ('⭐⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'),
+  )
+  choice_blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='post', verbose_name='выберите пост для коммента')
+  text = models.TextField(verbose_name='оставьте отзыв')
+  stars = models.CharField(max_length=100, choices=STARS, verbose_name='поставьте оценку об блоге', default='⭐⭐⭐⭐')
+  
+  def __str__(self):
+    return f'{self.choice_blog} - {self.stars}'
+  
+  class Meta:
+    verbose_name = 'коммент'
+    verbose_name_plural = 'комменты'
+
+
+
+
+
+
+
+#  many to many, one to many, one to one
