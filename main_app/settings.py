@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'blog',
     'car_driver',
     'photos',
+    'todo',
 ]
 
 MIDDLEWARE = [
