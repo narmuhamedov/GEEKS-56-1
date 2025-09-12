@@ -14,6 +14,8 @@ urlpatterns = [
     path('all_photo/', all_photo, name='all_photo'),
     path('picknick/', picknick, name='picknik'),
     path('', include('todo.urls')),
+    path('', include('users.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

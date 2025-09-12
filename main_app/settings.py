@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'car_driver',
     'photos',
     'todo',
+    'users',
+    'captcha',
 ]
 
 MIDDLEWARE = [
