@@ -27,10 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'car_driver',
-    'photos',
     'todo',
     'users',
     'captcha',
+    'tags',
 ]
 
 MIDDLEWARE = [

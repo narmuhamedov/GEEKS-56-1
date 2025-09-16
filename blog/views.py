@@ -2,6 +2,23 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from blog.models import Blog
+from django.core.paginator import Paginator
+
+#Search
+def search_view(request):
+  query = request.GET.get('s', '')
+  blog_lst = Blog.objects.filter(title__icontains=query) if query else Blog.objects.none
+  context = {
+    'blog_lst': blog_lst,
+    's': query,
+  }
+  return render(request, template_name='blog.html', context=context)
+
+
+
+
+
+
 
 def blog_detail(request, id):
   if request.method == 'GET':
@@ -16,8 +33,13 @@ def blog_detail(request, id):
 def blog_list(request):
   if request.method == 'GET':
     blog_list = Blog.objects.all().order_by('-id')
+    paginator = Paginator(blog_list, 2)
+    page = request.GET.get('page')
+    page_obj = paginator.get_page(page)
     context = {
-      'blog_lst': blog_list,
+
+      'blog_lst': page_obj
+      #'blog_lst': blog_list,
     }
     return render(request, template_name='blog.html', context=context)
 
