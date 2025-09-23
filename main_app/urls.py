@@ -18,6 +18,7 @@ urlpatterns = [
     path('all_products/', all_products, name='all_products'),
     path('drinks_products/', drinks_products, name='drinks_products'),
     path('meal_products/', meal_products, name='meal_products'),
+    path('', include('cineboard.urls')),
 
     
 ]
