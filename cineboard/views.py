@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -18,7 +18,30 @@ class CreateFilmView(generic.CreateView):
     success_url = '/all_films/'
 
 
+#Update
+class UpdateFilmView(generic.UpdateView):
+  model = models.Films
+  form_class = forms.FilmsForm
+  template_name = 'cineboard/updateFilm.html'
+  success_url = '/all_films/'
 
+  def get_object(self, *args, **kwargs):
+    film_id = self.kwargs.get('id')
+    return get_object_or_404(models.Films, id=film_id)
+  
+  def form_valid(self, form):
+    print(form.cleaned_data)
+    return super(UpdateFilmView, self).form_valid(form=form)
+
+
+#Delete
+class DeleteFilmView(generic.DeleteView):
+  template_name = 'cineboard/confirm_delete_film.html'
+  success_url = '/all_films/'
+
+  def get_object(self, *args, **kwargs):
+    film_id = self.kwargs.get('id')
+    return get_object_or_404(models.Films, id=film_id)
 
 
 
